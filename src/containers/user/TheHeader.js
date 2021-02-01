@@ -102,7 +102,7 @@ const Header = () => {
   useEffect(() => {
     let isSubscribed = true
     getUserInfo()
-      .then(function (response) {
+      .then((response) => {
         const data = response.data;
         if (isSubscribed) {
           dispatch({ type: 'set', username: data.user.name });
@@ -112,7 +112,7 @@ const Header = () => {
           }
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       })
     return () => isSubscribed = false
