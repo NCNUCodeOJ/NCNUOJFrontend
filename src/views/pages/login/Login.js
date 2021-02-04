@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import {  
+import {
   Avatar, Button, CssBaseline, Link,
   Paper, Box, Grid, Typography, Dialog,
   Backdrop, CircularProgress
@@ -351,6 +351,7 @@ const SignInSide = () => {
             <Typography component="h1" variant="h5">
               登入
           </Typography>
+              <Button color="inherit" href="#register">註冊</Button>
             <form className={classes.form} noValidate>
               <Alert severity="info">
                 <AlertTitle>請注意</AlertTitle>
