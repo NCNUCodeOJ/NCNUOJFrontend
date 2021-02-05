@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Avatar, Button, CssBaseline, Link,
-    Paper, Box, Grid, Typography, Backdrop, 
+    Paper, Box, Grid, Typography, Backdrop,
     CircularProgress, TextField
 } from '@material-ui/core';
 import {
@@ -22,10 +22,6 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         height: '100vh',
-    },
-    droot: {
-        margin: 0,
-        padding: theme.spacing(2),
     },
     image: {
         backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -52,9 +48,6 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-    title: {
-        fontSize: 14,
-    },
     textArea: {
         padding: theme.spacing(1, 'auto'),
     },
@@ -73,7 +66,7 @@ const Copyright = () => {
     );
 }
 
-const SignInSide = () => {
+const Register = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
@@ -146,7 +139,11 @@ const SignInSide = () => {
                                     <School />
                                 </Grid>
                                 <Grid item xs={4} sm={6} md={6} >
-                                    <TextField id="standard-basic" label="School ID" placeholder="NCNU" required />
+                                    <TextField
+                                        id="SchoolID"
+                                        label="School ID"
+                                        placeholder="NCNU"
+                                        required />
                                 </Grid>
                             </Grid>
                             <Grid container className={classes.textArea} alignItems="flex-end">
@@ -154,7 +151,11 @@ const SignInSide = () => {
                                     <AssignmentInd />
                                 </Grid>
                                 <Grid item xs={6} sm={6} md={6} >
-                                    <TextField id="standard-basic" label="Student ID" placeholder="107213023" required />
+                                    <TextField
+                                        id="StudentID"
+                                        label="Student ID"
+                                        placeholder="107213023"
+                                        required />
                                 </Grid>
                             </Grid>
                             <Grid container className={classes.textArea} alignItems="flex-end">
@@ -162,7 +163,10 @@ const SignInSide = () => {
                                     <Mail />
                                 </Grid>
                                 <Grid item xs={6} sm={6} md={6}>
-                                    <TextField id="standard-basic" label="Email" placeholder="s107213023@mail1.ncnu.edu.tw" required />
+                                    <TextField
+                                        id="Email"
+                                        label="Email"
+                                        required />
                                 </Grid>
                             </Grid>
                             <Grid container className={classes.textArea} alignItems="flex-end">
@@ -170,7 +174,10 @@ const SignInSide = () => {
                                     <AccountCircle />
                                 </Grid>
                                 <Grid item xs={6} sm={6} md={6}>
-                                    <TextField id="standard-basic" label="User Name" placeholder="Judy" required />
+                                    <TextField
+                                        id="UserName"
+                                        label="User Name"
+                                        required />
                                 </Grid>
                             </Grid>
                             <Grid container className={classes.textArea} alignItems="flex-end">
@@ -178,7 +185,10 @@ const SignInSide = () => {
                                     <Lock />
                                 </Grid>
                                 <Grid item xs={6} sm={6} md={6}>
-                                    <TextField id="standard-basic" label="Password" required />
+                                    <TextField
+                                        id="Password"
+                                        label="Password"
+                                        required />
                                 </Grid>
                             </Grid>
                             <Grid container className={classes.textArea} alignItems="flex-end">
@@ -186,7 +196,9 @@ const SignInSide = () => {
                                     <Translate />
                                 </Grid>
                                 <Grid item xs={6} sm={6} md={6}>
-                                    <TextField id="standard-basic" label="Real Name" placeholder="謝芝瑜" />
+                                    <TextField
+                                        id="RealName"
+                                        label="Real Name" />
                                 </Grid>
                             </Grid>
                             <Button
@@ -210,4 +222,4 @@ const SignInSide = () => {
     );
 }
 
-export default SignInSide;
+export default Register;

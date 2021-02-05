@@ -5,7 +5,8 @@ import {
   ListItemIcon, ListItemText,
 } from '@material-ui/core';
 import {
-  ExpandLess, ExpandMore
+  ExpandLess, ExpandMore, PersonRounded,
+  Info
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,6 +33,24 @@ const AdminLink = () => {
       </ListItemIcon>
       <ListItemText primary="管理員介面" />
     </ListItemLink>
+  )
+}
+const ProfileLink = () => {
+  return (
+    <List>
+      <ListItemLink href="#profile/Profile">
+        <ListItemIcon>
+          <PersonRounded />
+        </ListItemIcon>
+        <ListItemText primary="個人資訊" />
+      </ListItemLink>
+      <ListItemLink href="#profile/Info">
+        <ListItemIcon>
+          <Info />
+        </ListItemIcon>
+        <ListItemText primary="系統資訊" />
+      </ListItemLink>
+    </List>
   )
 }
 
@@ -66,6 +85,7 @@ const LoginItem = () => {
           </ListItemLink>
         </List>
       </Collapse>
+      <ProfileLink/>
     </>
   )
 }
