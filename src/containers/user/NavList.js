@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import {
   ExpandLess, ExpandMore, PersonRounded,
-  Info
+  Info, Note
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -94,6 +94,12 @@ const LoginItem = () => {
           </ListItemLink>
         </List>
       </Collapse>
+      <ListItemLink href="#test/TestList">
+        <ListItemIcon>
+          <Note />
+        </ListItemIcon>
+        <ListItemText primary="測驗" />
+      </ListItemLink>
     </>
   )
 }
