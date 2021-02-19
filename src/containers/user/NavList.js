@@ -86,12 +86,12 @@ const LoginItem = () => {
             </ListItemIcon>
             <ListItemText primary="個人資訊" />
           </ListItemLink>
-          <ListItemLink className={classes.nested} href="#profile/Info">
+          {/* <ListItemLink className={classes.nested} href="#profile/Info">
             <ListItemIcon>
               <Info />
             </ListItemIcon>
             <ListItemText primary="系統資訊" />
-          </ListItemLink>
+          </ListItemLink> */}
         </List>
       </Collapse>
       <ListItemLink href="#test/TestList">

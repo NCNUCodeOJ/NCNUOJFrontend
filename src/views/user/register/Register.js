@@ -91,9 +91,9 @@ const Register = () => {
             }
         }
 
-        if (RealName === "") {
-            errorMsg += "未填寫真實姓名 ";
-            errorList.push("RealName");
+        if (UserName === "") {
+            errorMsg += "未填寫帳號 ";
+            errorList.push("UserName");
             errorOccurred = true;
         }
         if (Password === "") {
@@ -182,10 +182,10 @@ const Register = () => {
                                 <TextField
                                     fullWidth
                                     id="UserName"
-                                    error={errorComponent.includes("UserNameEmail")}
+                                    error={errorComponent.includes("UserName")}
                                     value={UserName}
                                     onChange={(event) => setUserName(event.target.value)}
-                                    label="暱稱"
+                                    label="帳號"
                                 />
                             </Grid>
                         </Grid>
@@ -202,7 +202,7 @@ const Register = () => {
                                     error={errorComponent.includes("RealName")}
                                     value={RealName}
                                     onChange={(event) => setRealName(event.target.value)}
-                                    label="真實姓名"
+                                    label="姓名"
                                 />
                             </Grid>
                         </Grid>
