@@ -9,9 +9,6 @@ import {
   AppBar, Toolbar, Typography, Button,
   IconButton, Hidden
 } from '@material-ui/core';
-import {
-  AccountCircle
-} from '@material-ui/icons';
 import { getUserInfo, logout } from '../../api/page/api';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
@@ -79,13 +76,13 @@ const ButtonList = () => {
         <Hidden smUp>
           <Button color="inherit" onClick={handleLogout}>登出</Button>
         </Hidden>
-        <Button color="inherit" href="#profile/Profile"><AccountCircle/></Button>
       </>
     )
   } else {
     return (
       <>
         <Button color="inherit" href="#login">登入</Button>
+        <Button color="inherit" href="#register/Register">註冊</Button>
       </>
     )
   }

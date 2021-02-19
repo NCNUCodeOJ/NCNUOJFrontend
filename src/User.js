@@ -15,8 +15,7 @@ const TheLayout = React.lazy(() => import('./containers/user/TheLayout'));
 const Login = React.lazy(() => import('./views/pages/login/Login'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page403 = React.lazy(() => import('./views/pages/page403/Page403'));
-const Register = React.lazy(() => import('./views/pages/register/Register'));
-
+// const Register = React.lazy(() => import('./views/pages/register/Register'));
 
 class User extends Component {
   render() {
@@ -25,7 +24,7 @@ class User extends Component {
         <HashRouter>
           <React.Suspense fallback={loading}>
             <Switch>
-              <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
+            {/* <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} /> */}
               <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
               <Route exact path="/404" name="Page 404" render={props => <Page404 {...props} />} />
               <Route exact path="/403" name="Page 403" render={props => <Page403 {...props} />} />

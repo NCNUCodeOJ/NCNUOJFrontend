@@ -35,24 +35,6 @@ const AdminLink = () => {
     </ListItemLink>
   )
 }
-const ProfileLink = () => {
-  return (
-    <List>
-      <ListItemLink href="#profile/Profile">
-        <ListItemIcon>
-          <PersonRounded />
-        </ListItemIcon>
-        <ListItemText primary="個人資訊" />
-      </ListItemLink>
-      <ListItemLink href="#profile/Info">
-        <ListItemIcon>
-          <Info />
-        </ListItemIcon>
-        <ListItemText primary="系統資訊" />
-      </ListItemLink>
-    </List>
-  )
-}
 
 const LoginItem = () => {
   const classes = useStyles();
@@ -61,6 +43,10 @@ const LoginItem = () => {
   const [ApplyClassOpen, setApplyClassOpen] = React.useState(false);
   const handleApplyClassClick = () => {
     setApplyClassOpen(!ApplyClassOpen);
+  };
+  const [InfoClassOpen, setInfoClassOpen] = React.useState(false);
+  const handleInfoClassClick = () => {
+    setInfoClassOpen(!InfoClassOpen);
   };
   if (!isLogin) {
     return null;
@@ -85,7 +71,29 @@ const LoginItem = () => {
           </ListItemLink>
         </List>
       </Collapse>
-      <ProfileLink/>
+      <ListItem button onClick={handleInfoClassClick}>
+        <ListItemIcon>
+          <FontAwesomeIcon icon={faChalkboardTeacher} />
+        </ListItemIcon>
+        <ListItemText primary="相關資訊設定" />
+        {InfoClassOpen ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={InfoClassOpen} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemLink className={classes.nested} href="#profile/Profile">
+            <ListItemIcon>
+              <PersonRounded />
+            </ListItemIcon>
+            <ListItemText primary="個人資訊" />
+          </ListItemLink>
+          <ListItemLink className={classes.nested} href="#profile/Info">
+            <ListItemIcon>
+              <Info />
+            </ListItemIcon>
+            <ListItemText primary="系統資訊" />
+          </ListItemLink>
+        </List>
+      </Collapse>
     </>
   )
 }
@@ -101,6 +109,7 @@ const NavList = () => {
           <ListItemText primary="首頁" />
         </ListItemLink>
         <LoginItem />
+        
       </List>
     </>
   );
