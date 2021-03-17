@@ -6,7 +6,8 @@ import {
 } from '@material-ui/core';
 import {
   ExpandLess, ExpandMore, PersonRounded,
-  LaptopMac, Note, ArrowBack
+  LaptopMac, Note, ArrowBack,
+  ExpandLess, ExpandMore, Note, Book
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -123,12 +124,6 @@ const LoginItem = () => {
             </ListItemIcon>
             <ListItemText primary="個人資訊" />
           </ListItemLink>
-          {/* <ListItemLink className={classes.nested} href="#profile/Info">
-            <ListItemIcon>
-              <Info />
-            </ListItemIcon>
-            <ListItemText primary="系統資訊" />
-          </ListItemLink> */}
         </List>
       </Collapse>
 
@@ -138,6 +133,20 @@ const LoginItem = () => {
         </ListItemIcon>
         <ListItemText primary="課程" />
       </ListItem>
+      {/* 測驗 */}
+      <ListItemLink href="#test/testList">
+        <ListItemIcon>
+          <Note />
+        </ListItemIcon>
+        <ListItemText primary="測驗" />
+      </ListItemLink>
+      {/* 作業 */}
+      <ListItemLink href="#homework/homeWorkList">
+        <ListItemIcon>
+          <Book />
+        </ListItemIcon>
+        <ListItemText primary="作業" />
+      </ListItemLink>
     </>
   )
 }

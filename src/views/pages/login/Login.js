@@ -6,8 +6,11 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Avatar, Button, CssBaseline, Link,
   Paper, Box, Grid, Typography, Dialog,
-  Backdrop, CircularProgress
+  Backdrop, CircularProgress, TextField
 } from '@material-ui/core/';
+import {
+  AccountCircle, Lock
+} from '@material-ui/icons';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -49,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+  },
+  textArea: {
+    marginRight: '20px'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -107,7 +113,7 @@ const Copyright = () => {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        vincentinttsh
+        NCNU IM
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -181,7 +187,7 @@ const SignInSide = () => {
     {
       key: "term1",
       title: "一、接受條款",
-      content: `台北市立大同高級中學公開授課系統（以下簡稱本網站） 當您申請使用，即表示您已閱讀並同意本網站條款之所有內容。
+      content: `國立暨南國際大學教學輔助系統（以下簡稱本網站） 當您申請使用，即表示您已閱讀並同意本網站條款之所有內容。
       本網站有權於任何時間修改或變更入會條款之內容，建議您隨時注意該修改或變更。`
     },
     {
@@ -293,7 +299,7 @@ const SignInSide = () => {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            非常歡迎您光臨「台北市立大同高級中學公開授課系統」（以下簡稱本網站），
+            非常歡迎您光臨「國立暨南國際大學教學輔助系統」（以下簡稱本網站），
             為了讓您能夠安心的使用本網站的各項服務與資訊，特此向您說明本網站的隱私權保護政策，
             以保障您的權益，請您詳閱下列內容：
           </Typography>
@@ -350,8 +356,7 @@ const SignInSide = () => {
             </Avatar>
             <Typography component="h1" variant="h5">
               登入
-          </Typography>
-              <Button color="inherit" href="#register">註冊</Button>
+            </Typography>
             <form className={classes.form} noValidate>
               <Alert severity="info">
                 <AlertTitle>請注意</AlertTitle>
@@ -364,8 +369,24 @@ const SignInSide = () => {
                   服務條款
                   </Button>》
                   <br />
-                  你只能使用XXXX@ttsh.tp.edu.tw的google帳號登入
+                  你只能使用sXXXXXXXXX@mail1.ncnu.edu.tw的google帳號登入
               </Alert>
+              <Grid container className={classes.textArea} alignItems="flex-end">
+                <Grid item xs={1} sm={1} md={1} >
+                  <AccountCircle />
+                </Grid>
+                <Grid item xs={4} sm={6} md={6} >
+                  <TextField id="standard-basic" label="Username" placeholder="Tom" required />
+                </Grid>
+              </Grid>
+              <Grid container className={classes.textArea} alignItems="flex-end">
+                <Grid item xs={1} sm={1} md={1} >
+                  < Lock />
+                </Grid>
+                <Grid item xs={4} sm={6} md={6} >
+                  <TextField id="standard-basic" label="Password" placeholder="Password" required />
+                </Grid>
+              </Grid>
               <Button
                 type="submit"
                 fullWidth
@@ -374,7 +395,19 @@ const SignInSide = () => {
                 href="http://localhost:8000/accounts/login/"
                 className={classes.submit}
               >
-                使用 google 登入
+                登入
+              </Button>
+              <Button
+                variant="contained"
+                href="#forgetPassword"
+              >
+                忘記密碼
+              </Button>
+              <Button
+                // color="inherit"
+                href="#register"
+              >
+                註冊
               </Button>
               <Box mt={5}>
                 <Copyright />

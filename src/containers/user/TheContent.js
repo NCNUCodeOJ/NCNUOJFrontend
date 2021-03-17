@@ -16,7 +16,7 @@ const loading = (
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
   },
 }));

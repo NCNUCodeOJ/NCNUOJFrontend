@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
   AppBar, Toolbar, Typography, Button,
-  IconButton, Hidden
+  IconButton, Hidden, Dialog, Grid, TextField
 } from '@material-ui/core';
+import {
+  AccountCircle, Lock
+} from '@material-ui/icons';
 import { getUserInfo, logout } from '../../api/page/api';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
+
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +36,14 @@ const useStyles = makeStyles((theme) => ({
   },
   white: {
     color: "white"
-  }
+  },
+  submit: {
+    // margin: theme.spacing(3, 0, 2),
+    // padding: theme.spacing(1, 5, 1),
+  },
+  textArea: {
+    marginRight: '20px'
+  },
 }));
 
 const Logout = (dispatch, history) => {
@@ -56,11 +70,51 @@ const Logout = (dispatch, history) => {
     })
 }
 
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.droot} {...other}>
+      <Typography variant="h6">{children}</Typography>
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
+
 const ButtonList = () => {
   const isLogin = useSelector(state => state.isLogin);
   const username = useSelector(state => state.username);
   const history = useHistory();
   const dispatch = useDispatch();
+  // 登入的彈跳視窗
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const handlePrivacyOpen = () => setPrivacyOpen(true);
+  const handlePrivacyClose = () => setPrivacyOpen(false);
+  const classes = useStyles();
   const handleLogout = () => {
     Logout(dispatch, history);
   }
@@ -81,8 +135,52 @@ const ButtonList = () => {
   } else {
     return (
       <>
-        <Button color="inherit" href="#login">登入</Button>
-        <Button color="inherit" href="#register/Register">註冊</Button>
+        <Button type="submit" color="inherit" onClick={handlePrivacyOpen}>登入</Button>
+        <Button color="inherit" href="#register"> 註冊 </Button>
+        <Dialog onClose={handlePrivacyClose} aria-labelledby="privacy-title" open={privacyOpen}>
+          <DialogTitle id="privacy-title" onClose={handlePrivacyClose} className={classes.title}>
+            Welcome to NCNU_IM !
+          </DialogTitle>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              歡迎蒞臨國立暨南國際大學教學輔助系統
+              <Grid container className={classes.textArea} alignItems="flex-end">
+                  <Grid item xs={1} sm={1} md={3} >
+                      <AccountCircle/>
+                  </Grid>
+                  <Grid item xs={4} sm={6} md={6} >
+                      <TextField id="standard-basic" label="Username" placeholder="Tom" required />
+                  </Grid>
+              </Grid>
+              <Grid container className={classes.textArea} alignItems="flex-end">
+                  <Grid item xs={1} sm={1} md={3} >
+                      < Lock/>
+                  </Grid>
+                  <Grid item xs={4} sm={6} md={6} >
+                      <TextField id="standard-basic" label="Password" placeholder="Password" required />
+                  </Grid>
+              </Grid>
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={handlePrivacyClose}
+              color="primary"
+              fullWidth
+              className={classes.submit}
+            >
+              登入
+            </Button>
+          </DialogActions>
+          <Button
+            variant="contained"
+            href="#login/forgetpassword"
+          >
+            忘記密碼 ?
+          </Button>
+        </Dialog>
       </>
     )
   }
@@ -142,12 +240,12 @@ const Header = () => {
           </Hidden>
           <Hidden xsDown>
             <Typography variant="h6" className={classes.title}>
-              TTSH 公開觀課系統
+              國立暨南國際大學教學輔助系統
             </Typography>
           </Hidden>
           <Hidden smUp>
             <Typography variant="h6" className={classes.title}>
-              ttsh
+              NCNU
           </Typography>
           </Hidden>
           <ButtonList />

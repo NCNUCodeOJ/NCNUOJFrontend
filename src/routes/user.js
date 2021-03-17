@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dashboard = React.lazy(() => import('../views/user/dashboard/Dashboard'));
+const Dashboard = React.lazy(() => import('../views/user/dashboard/NewDashboard'));
 const ApplyNewClassCreate = React.lazy(() => import('../views/user/applyNewHighClass/Create'))
 const Profile = React.lazy(() => import('../views/user/profile/Profile'))
 const Register = React.lazy(() => import('../views/user/register/Register'))
@@ -10,6 +10,9 @@ const HomeworkInfo = React.lazy(() => import('../views/user/homework/HomeWorkInf
 const HomeWorkList = React.lazy(() => import('../views/user/homework/HomeWorkList'))
 
 
+const ForgetPassword = React.lazy(() => import('../views/pages/forgetPassword/ForgetPassword'))
+const TestList = React.lazy(() => import('../views/user/quize/TestList'))
+const HomeWorkList = React.lazy(() => import('../views/user/homework/HomeWorkList'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -21,6 +24,10 @@ const routes = [
   { path: '/exam/ExamInfo', exact: true, name: '測驗內容', component: ExamInfo },
   { path: '/homework/HomeWorkInfo', exact: true, name: '作業內容', component: HomeworkInfo },
   { path: '/homework/HomeworkList', exact: true, name: '作業清單', component: HomeWorkList },
+  { path: '/applynewclass/create', exact: true, name: '新增公開觀課', component: ApplyNewClassCreate},
+  { path: '/login/forgetpassword', exact: true, name: '忘記密碼', component: ForgetPassword},
+  { path: '/quize/testList', exact: true, name: '測驗清單', component: TestList },
+  { path: '/homework/homeWorkList', exact: true, name: '作業清單', component: HomeWorkList },
 ];
 
 export default routes;
