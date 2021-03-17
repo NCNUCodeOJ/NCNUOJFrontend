@@ -16,7 +16,6 @@ const Login = React.lazy(() => import('./views/pages/login/Login'));
 const ForgetPassword = React.lazy(() => import('./views/pages/forgetPassword/ForgetPassword'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page403 = React.lazy(() => import('./views/pages/page403/Page403'));
-const Register = React.lazy(() => import('./views/pages/register/Register'));
 
 
 class User extends Component {
