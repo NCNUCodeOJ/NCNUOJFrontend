@@ -33,6 +33,15 @@ const editUserAccount = (SchoolID, StudentID, Email, UserName, RealName, Passwor
     "Password": Password,
   });
 }
+const newExamSubmition=(MultipleAnswer,TrueFalseAnswer,ShortAnswer)=>{
+  return axios.post(`${serverURL}/high/info`,{
+    "MultipleAnswer":MultipleAnswer,
+    "TrueFalseAnswer":TrueFalseAnswer,
+    "ShortAnswer":ShortAnswer,
+  });
+}
+const newHomeWorkSubmition=()=>{
+  return axios.post(`${serverURL}/high/info`,{});
+}
 
-
-export {newApplyNewHighClass, newUserAccount, editUserAccount};
+export {newApplyNewHighClass, newUserAccount, editUserAccount,newExamSubmition,newHomeWorkSubmition};

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -43,6 +44,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = () => {
   const classes = useStyles();
+  const isLogin = useSelector(state => state.isLogin);
+
+  if (!isLogin) {
+    return (
+      <Redirect to="/" />
+    )
+  }
   return (
     <Grid container spacing={5} justify='center'>
       <Grid item xs={4} sm={5} md={5} className={classes.profileImg}>
@@ -336,16 +344,30 @@ const ProfilePage = () => {
   const handleProfileEditClick = () => {
     setProfileEdit(!ProfileEdit);
   };
-  return (
-    <Paper className={classes.paper}>
-      <CssBaseline />
-      <Grid className={classes.editIcon}>
-        <Button onClick={handleProfileEditClick} timeout="auto" unmountOnExit>
-          {ProfileEdit ? null : <Edit />}
-        </Button>
-      </Grid>
-      {ProfileEdit ? <EditProfile /> : <Profile />}
-    </Paper>
-  )
+  if(ProfileEdit){
+    return (
+      <>
+      <Paper className={classes.paper}>
+        <CssBaseline />
+        {ProfileEdit ? <EditProfile /> : <Profile />}
+      </Paper>
+      </>
+    )
+  }else{
+    return(
+      <>
+      <Paper className={classes.paper}>
+        <CssBaseline />
+        <Grid className={classes.editIcon}>
+          <Button onClick={handleProfileEditClick} timeout="auto" unmountOnExit>
+            {ProfileEdit ? null : <Edit />}
+          </Button>
+        </Grid>
+        {ProfileEdit ? <EditProfile /> : <Profile />}
+      </Paper>
+      </>
+    )
+  }
+
 }
 export default ProfilePage

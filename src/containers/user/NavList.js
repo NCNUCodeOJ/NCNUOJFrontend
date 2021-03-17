@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import {
   ExpandLess, ExpandMore, PersonRounded,
-  Info, Note
+  LaptopMac, Note, ArrowBack
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +24,37 @@ const useStyles = makeStyles((theme) => ({
 const ListItemLink = (props) => {
   return <ListItem button component="a" {...props} />;
 }
-
+const CourseList = () =>{
+  const [CourseListClose, setCourseListClose] = React.useState(false);
+  const handleICourseClick = () => {
+    setCourseListClose(!CourseListClose);
+  };
+  if(CourseListClose){
+    return <LoginItem />;
+  }
+  return(
+    <>
+    <ListItem button onClick={handleICourseClick} >
+        <ListItemIcon>
+          <ArrowBack />
+        </ListItemIcon>
+        <ListItemText primary="返回" />
+      </ListItem>
+    <ListItemLink href="#exam/ExamInfo">
+        <ListItemIcon>
+          <Note />
+        </ListItemIcon>
+        <ListItemText primary="測驗" />
+      </ListItemLink>
+      <ListItemLink href="#homework/HomeWorkList">
+        <ListItemIcon>
+          <LaptopMac />
+        </ListItemIcon>
+        <ListItemText primary="作業" />
+      </ListItemLink>
+      </>
+  )
+}
 const AdminLink = () => {
   return (
     <ListItemLink href="/admin/">
@@ -48,8 +78,15 @@ const LoginItem = () => {
   const handleInfoClassClick = () => {
     setInfoClassOpen(!InfoClassOpen);
   };
+  const [CourseListOpen, setCourseListOpen] = React.useState(false);
+  const handleICourseClick = () => {
+    setCourseListOpen(!CourseListOpen);
+  };
   if (!isLogin) {
     return null;
+  }
+  if(CourseListOpen){
+    return <CourseList/>;
   }
   return (
     <>
@@ -94,12 +131,13 @@ const LoginItem = () => {
           </ListItemLink> */}
         </List>
       </Collapse>
-      <ListItemLink href="#test/TestList">
+
+      <ListItem button onClick={handleICourseClick}>
         <ListItemIcon>
-          <Note />
+          <LaptopMac />
         </ListItemIcon>
-        <ListItemText primary="測驗" />
-      </ListItemLink>
+        <ListItemText primary="課程" />
+      </ListItem>
     </>
   )
 }
@@ -115,7 +153,7 @@ const NavList = () => {
           <ListItemText primary="首頁" />
         </ListItemLink>
         <LoginItem />
-        
+
       </List>
     </>
   );
