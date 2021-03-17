@@ -5,7 +5,7 @@ import {
   ListItemIcon, ListItemText,
 } from '@material-ui/core';
 import {
-  ExpandLess, ExpandMore
+  ExpandLess, ExpandMore, Note, Book
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -66,6 +66,20 @@ const LoginItem = () => {
           </ListItemLink>
         </List>
       </Collapse>
+      {/* 測驗 */}
+      <ListItemLink href="#test/testList">
+        <ListItemIcon>
+          <Note />
+        </ListItemIcon>
+        <ListItemText primary="測驗" />
+      </ListItemLink>
+      {/* 作業 */}
+      <ListItemLink href="#homework/homeWorkList">
+        <ListItemIcon>
+          <Book />
+        </ListItemIcon>
+        <ListItemText primary="作業" />
+      </ListItemLink>
     </>
   )
 }

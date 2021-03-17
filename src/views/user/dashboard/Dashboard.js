@@ -5,7 +5,6 @@ import {
   Accordion, AccordionSummary, AccordionDetails
 } from '@material-ui/core/';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { getHighClass } from '../../../api/page/api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBookOpen, faSchool, faCalendarDay, faClock
@@ -70,14 +69,63 @@ const Dashboard = () => {
   const classes = useStyles();
   const [allClass, setAllClass] = useState([])
   useEffect(() => {
-    getHighClass()
-      .then(function (rs) {
-        setAllClass(rs.data.class);
-      })
-      .catch(function (err) {
-        const data = err;
-        console.log(data)
-      })
+    setAllClass([
+      {
+          "id": 15,
+          "teacherName": "vincentinttsh",
+          "department": "dev",
+          "className": "jskalsd",
+          "classroom": "kdajsdla",
+          "date": "2021-05-14",
+          "startTime": "17:26:00",
+          "endTime": "22:26:00",
+          "calendarLink": "http://www.google.com/calendar/event?action=TEMPLATE&text=公開授課（vincentinttsh）&dates=20210514T172600/20210514T222600&details=devjskalsd公開授課%0A授課老師：vincentinttsh&location=kdajsdla&trp=false"
+      },
+      {
+          "id": 12,
+          "teacherName": "vincentinttsh",
+          "department": "dev",
+          "className": "sadasdsd",
+          "classroom": "Assad",
+          "date": "2021-05-28",
+          "startTime": "03:37:00",
+          "endTime": "23:37:00",
+          "calendarLink": "http://www.google.com/calendar/event?action=TEMPLATE&text=公開授課（vincentinttsh）&dates=20210528T033700/20210528T233700&details=devsadasdsd公開授課%0A授課老師：vincentinttsh&location=Assad&trp=false"
+      },
+      {
+          "id": 13,
+          "teacherName": "vincentinttsh",
+          "department": "dev",
+          "className": "adds",
+          "classroom": "adasd",
+          "date": "2021-06-19",
+          "startTime": "09:44:00",
+          "endTime": "23:44:00",
+          "calendarLink": "http://www.google.com/calendar/event?action=TEMPLATE&text=公開授課（vincentinttsh）&dates=20210619T094400/20210619T234400&details=devadds公開授課%0A授課老師：vincentinttsh&location=adasd&trp=false"
+      },
+      {
+          "id": 10,
+          "teacherName": "vincentinttsh",
+          "department": "dev",
+          "className": "kjljkj",
+          "classroom": "l/ml",
+          "date": "2021-11-11",
+          "startTime": "16:29:00",
+          "endTime": "23:29:00",
+          "calendarLink": "http://www.google.com/calendar/event?action=TEMPLATE&text=公開授課（vincentinttsh）&dates=20211111T162900/20211111T232900&details=devkjljkj公開授課%0A授課老師：vincentinttsh&location=l/ml&trp=false"
+      },
+      {
+          "id": 11,
+          "teacherName": "vincentinttsh",
+          "department": "dev",
+          "className": "kjlkjlkj",
+          "classroom": "hjkhkjhk",
+          "date": "2021-11-13",
+          "startTime": "11:30:00",
+          "endTime": "23:30:00",
+          "calendarLink": "http://www.google.com/calendar/event?action=TEMPLATE&text=公開授課（vincentinttsh）&dates=20211113T113000/20211113T233000&details=devkjlkjlkj公開授課%0A授課老師：vincentinttsh&location=hjkhkjhk&trp=false"
+      }
+  ]);
   }, []);
   return (
     <div className={classes.root}>
