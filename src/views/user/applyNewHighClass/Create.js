@@ -145,8 +145,8 @@ const Create = () => {
           <Grid container spacing={3} justify='center'>
 
             <Grid
-              item xs={12} md={6} justify='center'
-              container alignItems="flex-end" spacing={1}
+              container item xs={12} md={6}
+               alignItems="flex-end" spacing={1}
             >
               <Grid item xs='auto'>
                 <FontAwesomeIcon icon={faBookOpen} size="lg" />

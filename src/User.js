@@ -21,19 +21,16 @@ const Register = React.lazy(() => import('./views/pages/register/Register'));
 class User extends Component {
   render() {
     return (
-      <>
-        <HashRouter>
-          <React.Suspense fallback={loading}>
-            <Switch>
-              <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
-              <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
-              <Route exact path="/404" name="Page 404" render={props => <Page404 {...props} />} />
-              <Route exact path="/403" name="Page 403" render={props => <Page403 {...props} />} />
-              <Route path="/" name="Home" render={props => <TheLayout {...props} />} />
-            </Switch>
-          </React.Suspense>
-        </HashRouter>
-      </>
+      <HashRouter>
+        <React.Suspense fallback={loading}>
+          <Switch>
+            <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
+            <Route exact path="/404" name="Page 404" render={props => <Page404 {...props} />} />
+            <Route exact path="/403" name="Page 403" render={props => <Page403 {...props} />} />
+            <Route path="/" name="Home" render={props => <TheLayout {...props} />} />
+          </Switch>
+        </React.Suspense>
+      </HashRouter>
     );
   }
 }

@@ -82,6 +82,7 @@ const ButtonList = () => {
     return (
       <>
         <Button color="inherit" href="#login">登入</Button>
+        <Button color="inherit" href="#register/Register">註冊</Button>
       </>
     )
   }

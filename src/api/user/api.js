@@ -13,5 +13,35 @@ const newApplyNewHighClass = (date, start, end, className, classroom) => {
     "classroom": classroom
   });
 }
+const newUserAccount = (SchoolID, StudentID, Email, UserName, RealName, Password) => {
+  return axios.post(`${serverURL}/high/info/`, {
+    "SchoolID": SchoolID,
+    "StudentID": StudentID,
+    "Email": Email,
+    "UserName": UserName,
+    "RealName": RealName,
+    "Password": Password,
+  });
+}
+const editUserAccount = (SchoolID, StudentID, Email, UserName, RealName, Password) => {
+  return axios.post(`${serverURL}/high/info/`, {
+    "SchoolID": SchoolID,
+    "StudentID": StudentID,
+    "Email": Email,
+    "UserName": UserName,
+    "RealName": RealName,
+    "Password": Password,
+  });
+}
+const newExamSubmition=(MultipleAnswer,TrueFalseAnswer,ShortAnswer)=>{
+  return axios.post(`${serverURL}/high/info`,{
+    "MultipleAnswer":MultipleAnswer,
+    "TrueFalseAnswer":TrueFalseAnswer,
+    "ShortAnswer":ShortAnswer,
+  });
+}
+const newHomeWorkSubmition=()=>{
+  return axios.post(`${serverURL}/high/info`,{});
+}
 
-export {newApplyNewHighClass};
+export {newApplyNewHighClass, newUserAccount, editUserAccount,newExamSubmition,newHomeWorkSubmition};
