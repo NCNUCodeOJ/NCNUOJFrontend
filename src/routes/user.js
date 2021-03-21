@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Dashboard = React.lazy(() => import('../views/user/dashboard/NewDashboard'));
-const ApplyNewClassCreate = React.lazy(() => import('../views/user/applyNewHighClass/Create'))
 const Profile = React.lazy(() => import('../views/user/profile/Profile'))
 const Register = React.lazy(() => import('../views/user/register/Register'))
 const ExamList = React.lazy(() => import('../views/user/exam/ExamList'))
@@ -14,7 +13,6 @@ const TestList = React.lazy(() => import('../views/user/quize/TestList'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: '首頁', component: Dashboard },
-  { path: '/applynewclass/create', exact: true, name: '新增公開觀課', component: ApplyNewClassCreate },
   { path: '/settings/profile', exact: true, name: '個人資訊', component: Profile },
   { path: '/register', exact: true, name: '註冊頁面', component: Register },
   { path: '/exam/ExamList', exact: true, name: '測驗清單', component: ExamList },
