@@ -14,9 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import 'date-fns';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { newExamSubmition } from '../../../api/user/api';
-
-
-
+import ErrorMsg from '../pkg/ErrorMsg';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,7 +41,6 @@ function createData(type, question) {
   // 2:是非
   // 3:簡答
 }
-
 
 function countDifficultyStar(difficulty) {
   var stars = [];
@@ -83,16 +80,6 @@ const Info = () => {
   const [ShortAnswer, setShortAnswer] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [errorComponent, setErrorComponent] = useState([]);
-  const ErrorMsg = () => {
-    if (errorMsg === "")
-      return null;
-    return (
-      <Alert severity='error'>
-        <AlertTitle>請注意</AlertTitle>
-        {errorMsg}
-      </Alert>
-    );
-  }
 
   if (!isLogin) {
     return (
@@ -147,7 +134,7 @@ const Info = () => {
       <Typography component="h4" variant="h4" align="left">
         {title}
       </Typography>
-      <ErrorMsg />
+        <ErrorMsg msg={errorMsg} />
       <Paper className={classes.paper}>
         <Typography variant="h6"  >
           難度:
@@ -169,7 +156,7 @@ const Info = () => {
                       <Grid item xs={2} md={1}>
                         <nobr>
                           <Box component="span" fontSize="h6.fontSize"
-                          className={errorComponent.includes("MultipleAnswer") ? classes.errorFont : null}>
+                            className={errorComponent.includes("MultipleAnswer") ? classes.errorFont : null}>
                             1.(<InputBase
                               id="MultipleAnswer"
                               error={errorComponent.includes("MultipleAnswer")}
@@ -182,7 +169,7 @@ const Info = () => {
                               }} type='text'
                               onChange={(event) => setMultipleAnswer(event.target.value)}
                               error={errorComponent.includes("MultipleAnswer")} />)
-                  </Box>
+                          </Box>
                         </nobr>
                       </Grid>
                       <Grid item xs={10} md={10}>
@@ -202,7 +189,7 @@ const Info = () => {
                       <Grid item xs={2} md={1}>
                         <nobr>
                           <Box component="span" fontSize="h6.fontSize"
-                          className={errorComponent.includes("TrueFalseAnswer") ? classes.errorFont : null}>
+                            className={errorComponent.includes("TrueFalseAnswer") ? classes.errorFont : null}>
                             1.(<InputBase
                               id="TrueFalseAnswer"
                               error={errorComponent.includes("TrueFalseAnswer")}
@@ -216,7 +203,7 @@ const Info = () => {
                               onChange={(event) => setTrueFalseAnswer(event.target.value)}
                               error={errorComponent.includes("TrueFalseAnswer")} />)
 
-                  </Box>
+                          </Box>
                         </nobr>
                       </Grid>
                       <Grid item xs={10} md={10}>
@@ -236,9 +223,9 @@ const Info = () => {
                     >
                       <Grid item>
                         <Box component="span" fontSize="h6.fontSize"
-                        className={errorComponent.includes("ShortAnswer") ? classes.errorFont : null} >
+                          className={errorComponent.includes("ShortAnswer") ? classes.errorFont : null} >
                           1.
-                      </Box>
+                        </Box>
                       </Grid>
                       <Grid item xs={11} md={11}>
                         <Box component="span" fontSize="h6.fontSize">
@@ -270,7 +257,7 @@ const Info = () => {
                   color="primary"
                 >
                   提交
-                    </Button>
+                </Button>
               </Grid>
             </Grid>
 

@@ -40,13 +40,13 @@ const CourseList = () => {
         </ListItemIcon>
         <ListItemText primary="返回" />
       </ListItem>
-      <ListItemLink href="#exam/ExamInfo">
+      <ListItemLink href="#lesson/ExamInfo">
         <ListItemIcon>
           <Note />
         </ListItemIcon>
         <ListItemText primary="測驗" />
       </ListItemLink>
-      <ListItemLink href="#homework/HomeWorkList">
+      <ListItemLink href="#lesson/HomeWorkInfo">
         <ListItemIcon>
           <LaptopMac />
         </ListItemIcon>
