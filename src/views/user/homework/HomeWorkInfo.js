@@ -2,24 +2,21 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Redirect, useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import { newHomeWorkSubmition } from '../../../api/user/api';
+import grey from '@material-ui/core/colors/grey';
 import {
   Paper, Typography, TextField,
   Button, Grid, FormControl,
-  InputLabel, NativeSelect
+  InputLabel, Select
 } from '@material-ui/core/';
 import {
   Star, StarHalf, StarBorder,
-  FileCopy,
   FileCopyOutlined
 } from '@material-ui/icons/';
-import { makeStyles } from '@material-ui/core/styles';
-import 'date-fns';
-import grey from '@material-ui/core/colors/grey';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { newHomeWorkSubmition } from '../../../api/user/api';
 
 
-const whiteGrey = grey[50];
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(2),
@@ -36,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   filezone: {
     minWidth: 300,
     minHeight: 100,
-    background: whiteGrey,
+    background: grey[50],
   },
   filebutton: {
     margin: 'auto',
@@ -47,106 +44,73 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
   },
 }));
-function countHomeWorkStar(difficulty) {
-  var stars = [];
-  var i = 0;
-  while (i < difficulty) {
+const countHomeWorkStar = (difficulty) => {
+  let stars = [];
+  let i = 0;
+  for (i = 0; i < difficulty; i++) {
     if (difficulty - i !== 0.5) {
-      stars.push(<Star />);
+      stars.push(<Star key={"star" + i} />);
     } else {
-      stars.push(<StarHalf />);
+      stars.push(<StarHalf key={"star" + i} />);
     }
-    i++;
   }
-  if (i !== 5) {
-    var remainDifficulty = 5 - i;
-    for (var i = 0; i < remainDifficulty; i++) {
-      stars.push(<StarBorder />);
-    }
+  for (; i < 5; i++) {
+    stars.push(<StarBorder key={"star" + i} />);
   }
   return stars;
 }
 
-// const CopyArea = () => {
-//   let copyAreaRef = useRef([]);
-//   const [allTestData, setTestData] = useState([]);
-//   useEffect(() => {
-//     setTestData([
-//       {
-//         "id": "1",
-//         "inputvalue": "1 1",
-//         "outputvalue": "2"
-
-//       }, {
-//         "id": "2",
-//         "inputvalue": "1 2",
-//         "outputvalue": "3"
-//       }]);
-//   }, []);
-//   copyAreaRef.current = allTestData.map(
-//     (ref, index) => copyAreaRef.current[index] = React.createRef()
-//   )
-//   const onCopyClick = (e) => {
-//     // console.log(e);
-//     // let d = document.getElementById(e.target.id+"in")
-//     // d.focus()
-//     // d.select()
-//     // document.execCommand("copy");
-//   };
-//   return (
-//     allTestData.map((value) => {
-//       return (
-//         <>
-//           <Grid item sx={12} md={6}>
-//             <Typography variant="h6" >
-//               標準輸入:
-//               <Button>
-//                 <FileCopyOutlined id={value.id} onClick={onCopyClick} />
-//               </Button>
-//             </Typography>
-//             <TextField
-//               id={value.id + "in"}
-//               defaultValue={value.inputvalue}
-//               ref={copyAreaRef.current[Object.keys(value)[1]]}
-//               InputProps={{
-//                 readOnly: true,
-//               }}
-//               variant="outlined"
-//             />
-//           </Grid>
-//           <Grid item sx={12} md={6}>
-//             <Typography variant="h6" >
-//               標準輸出:
-//               <Button>
-//                 <FileCopyOutlined onClick={onCopyClick(this)} />
-//               </Button>
-//             </Typography>
-//             <TextField
-//               id={value.id + "out"}
-//               defaultValue={value.outputvalue}
-//               ref={copyAreaRef.current[Object.keys(value)[2]]}
-//               InputProps={{
-//                 readOnly: true,
-//               }}
-//               variant="outlined"
-//             />
-//           </Grid>
-//         </>
-//       );
-//     })
-//   );
-// }
+const ShowBox = (prop) => {
+  const element = useRef();
+  const onCopyClick = (e) => {
+    e.current.select()
+    document.execCommand("copy");
+  };
+  return (
+    <Grid item sx={12} md={6}>
+      <Typography variant="h6" >
+        {prop.title}
+        <Button>
+          <FileCopyOutlined onClick={() => onCopyClick(element)} />
+        </Button>
+      </Typography>
+      <TextField
+        inputRef={element}
+        defaultValue={prop.value}
+        InputProps={{ readOnly: true }}
+        variant="outlined"
+        fullWidth
+      />
+    </Grid>
+  );
+}
 
 const Info = () => {
+  const difficulty = 3.5;
+
   const classes = useStyles();
   const history = useHistory();
   const isLogin = useSelector(state => state.isLogin);
-  var difficulty = 3.5;
-  const difficultyStars = countHomeWorkStar(difficulty);
+  const [allTestData, setTestData] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorComponent, setErrorComponent] = useState([]);
   const [state, setState] = React.useState({
     language: '',
     name: 'hai',
   });
+  useEffect(() => {
+    const data = [{
+      "id": "0",
+      "inputvalue": "1 1",
+      "outputvalue": "2",
+    }, {
+      "id": "1",
+      "inputvalue": "1 2",
+      "outputvalue": "3",
+    }]
+    setTestData(data);
+  }, []);
+  const difficultyStars = countHomeWorkStar(difficulty);
   const handleChange = (event) => {
     const language = event.target.name;
     setState({
@@ -154,8 +118,6 @@ const Info = () => {
       [language]: event.target.value,
     });
   };
-  const [errorMsg, setErrorMsg] = useState("");
-  const [errorComponent, setErrorComponent] = useState([]);
   const ErrorMsg = () => {
     if (errorMsg === "")
       return null;
@@ -166,7 +128,6 @@ const Info = () => {
       </Alert>
     );
   }
-
   if (!isLogin) {
     return (
       <Redirect to="/" />
@@ -212,25 +173,38 @@ const Info = () => {
         <Typography variant="h6" color="error">
           剩餘時間:
         </Typography>
-        <div className={classes.box}>
-          <Typography variant="h6" >
-            說明:
-          </Typography>
-          <Typography variant="h6" >
+        <Grid container className={classes.box}>
+          <Grid item xs={12}>
+            <Typography variant="h6" >
+              說明:
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h6" >
             輸入:
-          </Typography>
-          <Typography variant="h6" >
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h6" >
             輸出:
-          </Typography>
-          <Grid container spacing={3}>
-            {/* <CopyArea /> */}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            {allTestData.map((value, index) => {
+              return (
+                <Grid container key={value.id} spacing={3}>
+                  <ShowBox title="input" value={value.inputvalue} />
+                  <ShowBox title="output" value={value.outputvalue} />
+                </Grid>
+              );
+            })}
           </Grid>
           <Grid item sx={12} md={10}>
             <Typography variant="h6" >
               評分標準:
             </Typography>
           </Grid>
-        </div>
+        </Grid>
         <Grid container spacing={1} alignItems="center">
           <Grid container item xs={3} md={1} >
             <Typography variant="h6">
@@ -239,24 +213,23 @@ const Info = () => {
           </Grid>
           <Grid container item xs={10} md={5} >
             <FormControl className={classes.formControl}>
-              <InputLabel shrink htmlFor="age-native-label-placeholder">
+              <InputLabel shrink htmlFor="language">
                 Language
               </InputLabel>
-              <NativeSelect
+              <Select
                 value={state.language}
                 onChange={handleChange}
+                id="language"
                 name='language'
               >
                 <option value="C">C</option>
                 <option value="PHP">PHP</option>
                 <option value="Python">Python</option>
                 <option value="Java">Java</option>
-              </NativeSelect>
+              </Select>
             </FormControl>
-
           </Grid>
-          <Grid item xs={12} md={10} spacing={3}
-            alignItems="center">
+          <Grid item xs={12} md={10}>
             <Paper variant="outlined" className={classes.filezone} align="center">
               <TextField
                 id="ShortAnswer"
