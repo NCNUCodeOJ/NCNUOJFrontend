@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {useDispatch} from 'react-redux';
 import {
   Grid, Typography,
   Accordion, AccordionSummary, AccordionDetails, Button
@@ -23,9 +24,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Item = (props) => {
   const x = props.item
+  const dispatch = useDispatch();
+  const handleEnterContestClick = () => {
+    dispatch({ type: 'set', isEnterContest: true});
+  };
+
   return (
     <>
-
     <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -51,8 +56,13 @@ const Item = (props) => {
             </Typography>
           </Grid>
           <Grid item md={4} xs={12}>
-            <Button fullWidth color="primary"
-              variant="contained" href={`#homework/homeWorkInfo/${x.id}`}>
+            <Button
+              fullWidth
+              color="primary"
+              variant="contained"
+              href="#contest/ContestIntro"
+              onClick={handleEnterContestClick}
+            >
               進入
             </Button>
           </Grid>
@@ -64,14 +74,14 @@ const Item = (props) => {
 }
 
 
-const HomeWorkList = () => {
+const ContestList = () => {
   const classes = useStyles();
   const [allClass, setAllClass] = useState([])
   useEffect(() => {
     setAllClass([
       {
           "id": 15,
-          "homeWorkName": "Hello World",
+          "homeWorkName": "第一單元",
           "department": "dev",
           "remainingTime": "21小時",
           "startTime": "2021-02-28 00:00",
@@ -79,7 +89,7 @@ const HomeWorkList = () => {
       },
       {
           "id": 12,
-          "homeWorkName": "走馬炮",
+          "homeWorkName": "第二單元",
           "department": "dev",
           "remainingTime": "2天",
           "startTime": "2021-02-29 00:00",
@@ -87,7 +97,7 @@ const HomeWorkList = () => {
       },
       {
           "id": 13,
-          "homeWorkName": "判斷閏年",
+          "homeWorkName": "第三單元",
           "department": "dev",
           "remainingTime": "7天",
           "startTime": "2021-02-29 09:44",
@@ -95,7 +105,7 @@ const HomeWorkList = () => {
       },
       {
           "id": 10,
-          "homeWorkName": "八皇后",
+          "homeWorkName": "第四單元",
           "department": "dev",
           "remainingTime": "13天",
           "startTime": "2021-02-29 16:29:00",
@@ -103,7 +113,7 @@ const HomeWorkList = () => {
       },
       {
           "id": 11,
-          "homeWorkName": "馬拉松",
+          "homeWorkName": "第五單元",
           "department": "dev",
           "remainingTime": "28天",
           "startTime": "2021-02-29 11:30:00",
@@ -114,7 +124,7 @@ const HomeWorkList = () => {
   return (
     <>
       <Typography align="center" variant="h4">
-        作業清單
+        比賽清單
       </Typography>
       <div className={classes.root}>
         {
@@ -127,4 +137,4 @@ const HomeWorkList = () => {
   );
 }
 
-export default HomeWorkList
+export default ContestList

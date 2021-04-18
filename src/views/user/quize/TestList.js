@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
   Paper, Typography, Grid,
-  TextField, Button, Form
+  Button,
 } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 import 'date-fns';

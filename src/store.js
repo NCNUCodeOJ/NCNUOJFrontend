@@ -2,10 +2,11 @@ import { createStore } from 'redux'
 
 const initialState = {
   sidebarShow: true,
-  isLogin: false,
+  isLogin: true,
   isAdmin: true,
   username: "",
   theme: false,
+  isEnterContest: false,
 }
 
 const changeState = (state = initialState, { type, ...rest }) => {
