@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  ListItem, ListItemIcon, ListItemText,
+} from '@material-ui/core';
+import {
+  ArrowBack, QuestionAnswer,
+  LibraryBooks, MenuBook, GpsFixedOutlined, Equalizer
+} from '@material-ui/icons/';
+
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid, Typography,
@@ -21,11 +30,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ListItemLink = (props) => {
+  return <ListItem button component="a" {...props} />;
+}
+
 const Item = (props) => {
   const x = props.item;
+  const dispatch = useDispatch();
+  const backToContestList = () => {
+    dispatch({ type: 'set', customNavBar: null });
+  };
+  const goToContestIntro = () => {
+    dispatch({
+      type: 'set', customNavBar: () => {
+        return (
+          <>
+            <ListItemLink button onClick={backToContestList} href="#contest/contestlist">
+              <ListItemIcon>
+                <ArrowBack />
+              </ListItemIcon>
+              <ListItemText primary="返回" />
+            </ListItemLink>
+            <ListItemLink href={`#contest/contestintro/${x.id}`}>
+              <ListItemIcon>
+                <LibraryBooks />
+              </ListItemIcon>
+              <ListItemText primary="簡介" />
+            </ListItemLink>
+            <ListItemLink href={`#contest/questionlist/${x.id}`}>
+              <ListItemIcon>
+                <MenuBook />
+              </ListItemIcon>
+              <ListItemText primary="題目" />
+            </ListItemLink>
+            <ListItemLink href={`#contest/statuspage/${x.id}`}>
+              <ListItemIcon>
+                <GpsFixedOutlined />
+              </ListItemIcon>
+              <ListItemText primary="狀態" />
+            </ListItemLink>
+            <ListItemLink href={`#contest/qapage/${x.id}`}>
+              <ListItemIcon>
+                <QuestionAnswer />
+              </ListItemIcon>
+              <ListItemText primary="QA" />
+            </ListItemLink>
+            <ListItemLink href={`#contest/rankpage/${x.id}`}>
+              <ListItemIcon>
+                <Equalizer />
+              </ListItemIcon>
+              <ListItemText primary="排行榜" />
+            </ListItemLink>
+          </>
+        )
+      }
+    });
+  };
   return (
     <>
-
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -52,7 +114,8 @@ const Item = (props) => {
             </Grid>
             <Grid item md={4} xs={12}>
               <Button fullWidth color="primary"
-                variant="contained" href={`#course/ExamInfo/${x.id}`}>
+                variant="contained" onClick={goToContestIntro}
+                href={`#contest/ContestIntro/${x.id}`}>
                 進入
               </Button>
             </Grid>
@@ -64,7 +127,7 @@ const Item = (props) => {
 }
 
 
-const ExamList = () => {
+const ContestList = () => {
   const classes = useStyles();
   const [allClass, setAllClass] = useState([])
   useEffect(() => {
@@ -114,7 +177,7 @@ const ExamList = () => {
   return (
     <>
       <Typography align="center" variant="h4">
-        測驗清單
+        比賽清單
       </Typography>
       <div className={classes.root}>
         {
@@ -127,4 +190,4 @@ const ExamList = () => {
   );
 }
 
-export default ExamList
+export default ContestList

@@ -13,7 +13,6 @@ import {
   Mail, Edit
 } from '@material-ui/icons/';
 import { editUserAccount } from '../../../api/user/api';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import ErrorMsg from '../pkg/ErrorMsg';
 
 const useStyles = makeStyles((theme) => ({

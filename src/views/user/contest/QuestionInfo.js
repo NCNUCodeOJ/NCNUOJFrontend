@@ -108,19 +108,19 @@ const Info = () => {
   useEffect(() => {
     const languageFiles = [{
       name: "C",
-      language: "c",
-      value: `#include "config.h"`,
+      language: "C",
+      value: "someCodeExample",
     }, {
       name: "Java",
-      language: "java",
+      language: "Java",
       value: "// System.out.println('Hello World');",
     }, {
       name: "PHP",
-      language: "php",
+      language: "PHP",
       value: "<!-- echo 'Hello World!';  -->",
     }, {
       name: "Python",
-      language: "python",
+      language: "Python",
       value: "# print('Hello World!')",
     }]
     setAllLanguageName(languageFiles);
@@ -158,9 +158,6 @@ const Info = () => {
       pauseOnHover: true,
       draggable: true,
     };
-    let errorOccurred = false;
-    if (errorOccurred)
-      return;
     newHomeWorkSubmition()
       .then((rs) => {
         const data = rs.data;
@@ -242,7 +239,7 @@ const Info = () => {
               >
                 {allLanguageName.map((value, index) => {
                   return (
-                    <option key={index} value={index}>{value.name}</option>
+                    <option key={index} value={index}>{value.language}</option>
                   );
                 })}
               </Select>

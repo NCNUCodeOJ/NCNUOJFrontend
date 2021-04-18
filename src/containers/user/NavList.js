@@ -6,14 +6,13 @@ import {
 } from '@material-ui/core';
 import {
   ExpandLess, ExpandMore, PersonRounded,
-  LaptopMac, Note, ArrowBack
+  LaptopMac, EmojiEvents
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChalkboardTeacher, faUserShield
 } from '@fortawesome/free-solid-svg-icons';
-
 
 const useStyles = makeStyles((theme) => ({
   nested: {
@@ -24,37 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const ListItemLink = (props) => {
   return <ListItem button component="a" {...props} />;
 }
-const CourseList = () => {
-  const [CourseListClose, setCourseListClose] = React.useState(false);
-  const handleICourseClick = () => {
-    setCourseListClose(!CourseListClose);
-  };
-  if (CourseListClose) {
-    return <LoginItem />;
-  }
-  return (
-    <>
-      <ListItem button onClick={handleICourseClick} >
-        <ListItemIcon>
-          <ArrowBack />
-        </ListItemIcon>
-        <ListItemText primary="返回" />
-      </ListItem>
-      <ListItemLink href="#lesson/ExamInfo">
-        <ListItemIcon>
-          <Note />
-        </ListItemIcon>
-        <ListItemText primary="測驗" />
-      </ListItemLink>
-      <ListItemLink href="#lesson/HomeWorkInfo">
-        <ListItemIcon>
-          <LaptopMac />
-        </ListItemIcon>
-        <ListItemText primary="作業" />
-      </ListItemLink>
-    </>
-  )
-}
+
 const AdminLink = () => {
   return (
     <ListItemLink href="/admin/">
@@ -70,16 +39,14 @@ const LoginItem = () => {
   const classes = useStyles();
   const isLogin = useSelector(state => state.isLogin);
   const isAdmin = useSelector(state => state.isAdmin);
+  const CustomNavBar = useSelector(state => state.customNavBar);
   const [InfoClassOpen, setInfoClassOpen] = React.useState(false);
-  const [CourseListOpen, setCourseListOpen] = React.useState(false);
   const handleInfoClassClick = () => setInfoClassOpen(!InfoClassOpen);
-  const handleICourseClick = () => setCourseListOpen(!CourseListOpen);
   if (!isLogin) {
     return null;
   }
-  if (CourseListOpen) {
-    return <CourseList />;
-  }
+  if (CustomNavBar !== null)
+    return <CustomNavBar />
   return (
     <>
       {isAdmin && <AdminLink />}
@@ -100,12 +67,18 @@ const LoginItem = () => {
           </ListItemLink>
         </List>
       </Collapse>
-      <ListItem button onClick={handleICourseClick}>
+      <ListItemLink href="#course" >
         <ListItemIcon>
           <LaptopMac />
         </ListItemIcon>
         <ListItemText primary="課程" />
-      </ListItem>
+      </ListItemLink>
+      <ListItemLink href="#contest/contestlist" >
+        <ListItemIcon>
+          <EmojiEvents />
+        </ListItemIcon>
+        <ListItemText primary="比賽" />
+      </ListItemLink>
     </>
   )
 }

@@ -6,6 +6,9 @@ const initialState = {
   isAdmin: true,
   username: "",
   theme: false,
+  // courseList: false,
+  // contestList: false,
+  customNavBar: null
 }
 
 const changeState = (state = initialState, { type, ...rest }) => {

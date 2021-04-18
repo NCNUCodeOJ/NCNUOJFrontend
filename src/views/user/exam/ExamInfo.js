@@ -12,7 +12,6 @@ import {
 } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import 'date-fns';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import { newExamSubmition } from '../../../api/user/api';
 import ErrorMsg from '../pkg/ErrorMsg';
 
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    textAlign: 'left',
+    textalign: 'left',
   },
   errorFont: {
     color: '#ff0000',
@@ -134,7 +133,7 @@ const Info = () => {
       <Typography component="h4" variant="h4" align="left">
         {title}
       </Typography>
-        <ErrorMsg msg={errorMsg} />
+      <ErrorMsg msg={errorMsg} />
       <Paper className={classes.paper}>
         <Typography variant="h6"  >
           難度:
@@ -145,108 +144,109 @@ const Info = () => {
         </Typography>
         <div className={classes.box}>
           <Grid container spacing={3}>
-            {Questionrows.map(obj => {
-              if (obj.type === 1)
-                return (
-                  <React.Fragment key={obj.num}>
-                    <Grid
-                      container item xs={12} md={12}
-                      alignItems="center" spacing={5}
-                    >
-                      <Grid item xs={2} md={1}>
-                        <nobr>
-                          <Box component="span" fontSize="h6.fontSize"
-                            className={errorComponent.includes("MultipleAnswer") ? classes.errorFont : null}>
-                            1.(<InputBase
-                              id="MultipleAnswer"
-                              error={errorComponent.includes("MultipleAnswer")}
-                              alignItems="center"
-                              textAlign="center"
-                              className={classes.margin}
-                              inputProps={{
-                                'aria-label': 'naked',
-                                'maxLength': 1
-                              }} type='text'
-                              onChange={(event) => setMultipleAnswer(event.target.value)}
-                              error={errorComponent.includes("MultipleAnswer")} />)
+            {
+              Questionrows.map((obj) => {
+                if (obj.type === 1)
+                  return (
+                    <React.Fragment key={obj.num}>
+                      <Grid
+                        container item xs={12} md={12}
+                        alignitems="center" spacing={5}
+                      >
+                        <Grid item xs={2} md={1}>
+                          <nobr>
+                            <Box component="span" fontSize="h6.fontSize"
+                              className={errorComponent.includes("MultipleAnswer") ? classes.errorFont : null}>
+                              1.(<InputBase
+                                id="MultipleAnswer"
+                                alignitems="center"
+                                textalign="center"
+                                className={classes.margin}
+                                inputProps={{
+                                  'aria-label': 'naked',
+                                  'maxLength': 1
+                                }} type='text'
+                                onChange={(event) => setMultipleAnswer(event.target.value)}
+                                error={errorComponent.includes("MultipleAnswer")} />)
+                            </Box>
+                          </nobr>
+                        </Grid>
+                        <Grid item xs={10} md={10}>
+                          <Box component="span" fontSize="h6.fontSize">
+                            {obj.question}
                           </Box>
-                        </nobr>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={10} md={10}>
-                        <Box component="span" fontSize="h6.fontSize">
-                          {obj.question}
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </React.Fragment>)
-              else if (obj.type === 2)
-                return (
-                  <React.Fragment key={obj.num}>
-                    <Grid
-                      container item xs={12} md={12}
-                      alignItems="center" spacing={5}
-                    >
-                      <Grid item xs={2} md={1}>
-                        <nobr>
-                          <Box component="span" fontSize="h6.fontSize"
-                            className={errorComponent.includes("TrueFalseAnswer") ? classes.errorFont : null}>
-                            1.(<InputBase
-                              id="TrueFalseAnswer"
-                              error={errorComponent.includes("TrueFalseAnswer")}
-                              alignItems="center"
-                              textAlign="center"
-                              className={classes.margin}
-                              inputProps={{
-                                'aria-label': 'naked',
-                                'maxLength': 1
-                              }} type='text'
-                              onChange={(event) => setTrueFalseAnswer(event.target.value)}
-                              error={errorComponent.includes("TrueFalseAnswer")} />)
+                    </React.Fragment>
+                  );
+                else if (obj.type === 2)
+                  return (
+                    <React.Fragment key={obj.num}>
+                      <Grid
+                        container item xs={12} md={12}
+                        alignitems="center" spacing={5}
+                      >
+                        <Grid item xs={2} md={1}>
+                          <nobr>
+                            <Box component="span" fontSize="h6.fontSize"
+                              className={errorComponent.includes("TrueFalseAnswer") ? classes.errorFont : null}>
+                              1.(<InputBase
+                                id="TrueFalseAnswer"
+                                alignitems="center"
+                                textalign="center"
+                                className={classes.margin}
+                                inputProps={{
+                                  'aria-label': 'naked',
+                                  'maxLength': 1
+                                }} type='text'
+                                onChange={(event) => setTrueFalseAnswer(event.target.value)}
+                                error={errorComponent.includes("TrueFalseAnswer")} />)
 
+                            </Box>
+                          </nobr>
+                        </Grid>
+                        <Grid item xs={10} md={10}>
+                          <Box component="span" fontSize="h6.fontSize">
+                            {obj.question}
                           </Box>
-                        </nobr>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={10} md={10}>
-                        <Box component="span" fontSize="h6.fontSize">
-                          {obj.question}
-                        </Box>
+                    </React.Fragment>
+                  );
+                else if (obj.type === 3)
+                  return (
+                    <React.Fragment key={obj.num}>
+                      <Grid
+                        container item xs={12} md={12}
+                        alignitems="center"
+                      >
+                        <Grid item>
+                          <Box component="span" fontSize="h6.fontSize"
+                            className={errorComponent.includes("ShortAnswer") ? classes.errorFont : null} >
+                            1.
+                          </Box>
+                        </Grid>
+                        <Grid item xs={11} md={11}>
+                          <Box component="span" fontSize="h6.fontSize">
+                            {obj.question}
+                          </Box>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </React.Fragment>
-                )
-              else if (obj.type === 3)
-                return (
-                  <React.Fragment key={obj.num}>
-                    <Grid
-                      container item xs={12} md={12}
-                      alignItems="center"
-                    >
-                      <Grid item>
-                        <Box component="span" fontSize="h6.fontSize"
-                          className={errorComponent.includes("ShortAnswer") ? classes.errorFont : null} >
-                          1.
-                        </Box>
+                      <Grid item xs={10} md={10}
+                        alignitems="center">
+                        <TextField
+                          id="ShortAnswer"
+                          rows={8}
+                          variant="outlined"
+                          multiline
+                          fullWidth
+                          onChange={(event) => setShortAnswer(event.target.value)}
+                          error={errorComponent.includes("ShortAnswer")} />
                       </Grid>
-                      <Grid item xs={11} md={11}>
-                        <Box component="span" fontSize="h6.fontSize">
-                          {obj.question}
-                        </Box>
-                      </Grid>
-                    </Grid>
-                    <Grid item xs={10} md={10}
-                      alignItems="center">
-                      <TextField
-                        id="ShortAnswer"
-                        rows={8}
-                        variant="outlined"
-                        multiline
-                        fullWidth
-                        onChange={(event) => setShortAnswer(event.target.value)}
-                        error={errorComponent.includes("ShortAnswer")} />
-                    </Grid>
-                  </React.Fragment>
-                )
-            })}
+                    </React.Fragment>
+                  );
+                return null;
+              })}
             <Grid
               container spacing={1} justify="center">
               <Grid item xs={6} md={4}>
