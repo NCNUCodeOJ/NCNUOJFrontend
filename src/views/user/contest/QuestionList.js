@@ -39,7 +39,7 @@ const Item = (props) => {
       >
         <Typography className={props.className}>
           <FontAwesomeIcon icon={faBookOpen} />
-          {" " + x.homeWorkName + "     " + "------" + "剩餘時間 :" + " " + x.remainingTime}
+          {` ${x.homeWorkName} ----- 剩餘時間 : ${x.remainingTime}`}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
@@ -121,7 +121,7 @@ const ContestList = () => {
   return (
     <>
       <Typography align="center" variant="h4">
-        比賽題目清單
+        題目清單
       </Typography>
       <div className={classes.root}>
         {

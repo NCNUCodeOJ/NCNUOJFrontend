@@ -3,10 +3,6 @@ import {
   Paper, Typography, Grid, TextField, Button
 } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faMailBulk, faComment
-} from '@fortawesome/free-solid-svg-icons';
 import 'date-fns';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
@@ -70,46 +66,45 @@ const ForgetPassword = () => {
         <ErrorMsg />
         <div className={classes.box}>
           <Grid container spacing={3} justify='center'>
+            {/* 信箱 */}
             <Grid
               item xs={12} md={12} justify='center'
               container alignItems="flex-end" spacing={1}
             >
-              <Grid item xs='auto'>
-                <FontAwesomeIcon icon={faMailBulk} size="lg" />
-              </Grid>
-              <Grid item xs={10} sm={6} md={6} alignItems="flex-end">
+              <Grid item xs={10} sm={6} md={4} alignItems="flex-end">
                 <TextField
-                  fullWidth
                   id="mail"
+                  label="信箱"
                   error={errorComponent.includes("mail")}
                   value={mail}
                   onChange={(event) => setMail(event.target.value)}
-                  placeholder="s107213055@mail1.ncnu.edu.tw"
+                  fullWidth
                   required
-                  label="信箱"
+                  autoComplete="current-username"
+                  variant="outlined"
+                  size="small"
                 />
               </Grid>
             </Grid>
-
+            {/* 驗證碼 */}
             <Grid
               item xs={12} md={12} justify='center'
               container alignItems="flex-end" spacing={1}
             >
-              <Grid container className={classes.textArea} justify='center' alignItems="flex-end">
-                <Grid item xs='auto'>
-                  <FontAwesomeIcon icon={faComment} size="lg" />
-                </Grid>
-                <Grid item xs={10} sm={6} md={6} >
-                  <TextField
-                    id="verification"
-                    label="驗證碼"
-                    required
-                    fullWidth
-                    error={errorComponent.includes("verification")}
-                    value={verification}
-                    onChange={(event) => setVerification(event.target.value)}
-                  />
-                </Grid>
+              <Grid item xs={10} sm={6} md={4} >
+                <TextField
+                  id="verification"
+                  label="驗證碼"
+                  required
+                  fullWidth
+                  error={errorComponent.includes("verification")}
+                  value={verification}
+                  onChange={(event) => setVerification(event.target.value)}
+                  type="username"
+                  autoComplete="current-username"
+                  variant="outlined"
+                  size="small"
+                />
               </Grid>
             </Grid>
             <Grid
@@ -117,7 +112,6 @@ const ForgetPassword = () => {
               container alignItems="flex-end" spacing={1}
             >
               <Button
-                fullWidth
                 onClick={submit}
                 variant="contained"
                 color="primary"

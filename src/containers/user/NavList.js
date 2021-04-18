@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   List, ListItem, Collapse,
   ListItemIcon, ListItemText,
@@ -8,6 +8,11 @@ import {
   ExpandLess, ExpandMore, PersonRounded,
   LaptopMac, EmojiEvents
 } from '@material-ui/icons/';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
