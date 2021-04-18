@@ -52,7 +52,7 @@ const Item = (props) => {
           </Grid>
           <Grid item md={4} xs={12}>
             <Button fullWidth color="primary"
-              variant="contained" href={`#homework/homeWorkInfo/${x.id}`}>
+              variant="contained" href={`#course/homeworkinfo/${x.id}`}>
               進入
             </Button>
           </Grid>

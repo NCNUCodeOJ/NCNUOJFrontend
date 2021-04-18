@@ -32,8 +32,8 @@ const routes = [
   { path: '/contest/contestintro/:id', exact: true, name: '比賽簡介', component: ContestIntro },
   { path: '/contest/questionlist/:id', exact: true, name: '題目清單', component: QuestionList },
   { path: '/contest/questioninfo/:id', exact: true, name: '題目內容', component: QuestionInfo },
-  { path: '/contest/statusPage', exact: true, name: '比賽狀態', component: StatusPage },
-  { path: '/contest/rankPage', exact: true, name: '比賽排行榜', component: RankPage },
-  { path: '/contest/qalist', exact: true, name: '比賽Q&A', component: QAList },
+  { path: '/contest/statuspage/:id', exact: true, name: '比賽狀態', component: StatusPage },
+  { path: '/contest/rankpage/:id', exact: true, name: '比賽排行榜', component: RankPage },
+  { path: '/contest/qalist/:id', exact: true, name: '比賽Q&A', component: QAList },
 ];
 export default routes;

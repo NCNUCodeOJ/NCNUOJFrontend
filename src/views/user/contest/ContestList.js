@@ -69,7 +69,7 @@ const Item = (props) => {
               </ListItemIcon>
               <ListItemText primary="狀態" />
             </ListItemLink>
-            <ListItemLink href={`#contest/qapage/${x.id}`}>
+            <ListItemLink href={`#contest/qalist/${x.id}`}>
               <ListItemIcon>
                 <QuestionAnswer />
               </ListItemIcon>
