@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid, Typography,
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 const Item = (props) => {
   const x = props.item;
   const dispatch = useDispatch();
-  const contestList = useSelector(state => state.contestList);
   const goToContestList = () => {
     dispatch({ type: 'set', contestList: true });
   };
@@ -71,7 +70,7 @@ const Item = (props) => {
 }
 
 
-const ContestList = () => {
+const QuestionList = () => {
   const classes = useStyles();
   const [allClass, setAllClass] = useState([])
   useEffect(() => {
@@ -134,4 +133,4 @@ const ContestList = () => {
   );
 }
 
-export default ContestList
+export default QuestionList

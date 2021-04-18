@@ -6,8 +6,7 @@ import {
   Button,
 } from '@material-ui/core/';
 import {
-  List, ListItem,
-  ListItemIcon, ListItemText,
+  ListItem,ListItemIcon, ListItemText,
 } from '@material-ui/core';
 import {
   LaptopMac, Note, ArrowBack,

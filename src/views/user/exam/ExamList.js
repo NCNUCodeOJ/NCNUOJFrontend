@@ -33,7 +33,7 @@ const Item = (props) => {
         >
           <Typography className={props.className}>
             <FontAwesomeIcon icon={faBookOpen} />
-            {" " + x.homeWorkName + "     " + "------" + "剩餘時間 :" + " " + x.remainingTime}
+            {` ${x.homeWorkName} ----- 剩餘時間 : ${x.remainingTime}`}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
