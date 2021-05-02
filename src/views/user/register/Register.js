@@ -46,6 +46,7 @@ const InputComponent = (props) => {
           value={props.value}
           onChange={(event) => props.set(event.target.value)}
           label={props.label}
+          type={props.type}
         />
       </Grid>
     </Grid>
@@ -162,92 +163,62 @@ const Register = () => {
               />
             </Grid>
             <Grid
-              item xs={12} md={6} justify='center'
-              container alignItems="flex-end" spacing={1}>
-              <Grid item xs='auto'>
-                <Mail />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  fullWidth
-                  id="UserName"
-                  error={errorComponent.includes("UserName")}
-                  value={UserName}
-                  onChange={(event) => setUserName(event.target.value)}
-                  label="帳號"
-                />
-              </Grid>
+              item xs={12} md={6} >
+              <InputComponent
+                id="UserName"
+                icon={Mail}
+                value={UserName}
+                label="帳號"
+                set={setUserName}
+                error={errorComponent}
+              />
             </Grid>
             <Grid
-              item xs={12} md={6} justify='center'
-              container alignItems="flex-end" spacing={1}>
-              <Grid item xs='auto'>
-                <Translate />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  fullWidth
-                  id="RealName"
-                  error={errorComponent.includes("RealName")}
-                  value={RealName}
-                  onChange={(event) => setRealName(event.target.value)}
-                  label="姓名"
-                />
-              </Grid>
+              item xs={12} md={6}>
+              <InputComponent
+                id="RealName"
+                icon={Translate}
+                value={RealName}
+                label="姓名"
+                set={setRealName}
+                error={errorComponent}
+              />
             </Grid>
             <Grid
-              item xs={12} md={12} justify='center'
-              container alignItems="flex-end" spacing={1}>
-              <Grid item xs='auto'>
-                <Mail />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  fullWidth
-                  id="Email"
-                  error={errorComponent.includes("Email")}
-                  value={Email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  label="電子信箱"
-                />
-              </Grid>
+              item xs={12} md={12} >
+              <InputComponent
+                id="Email"
+                icon={Mail}
+                value={Email}
+                label="電子信箱"
+                onChange={setEmail}
+                error={errorComponent}
+              />
             </Grid>
             <Grid
-              item xs={12} md={6} justify='center'
-              container alignItems="flex-end" spacing={1}>
-              <Grid item xs='auto'>
-                <Lock />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  fullWidth
-                  id="Password"
-                  error={errorComponent.includes("Password")}
-                  value={Password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  label="密碼"
-                  type="password"
-                />
-              </Grid>
+              item xs={12} md={6} >
+              <InputComponent
+                id="Password"
+                icon={Lock}
+                value={Password}
+                label="密碼"
+                set={setPassword}
+                error={errorComponent}
+                type="password"
+              />
             </Grid>
             <Grid
-              item xs={12} md={6} justify='center'
-              container alignItems="flex-end" spacing={1}>
-              <Grid item xs='auto'>
-                <Lock />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  fullWidth
+              item xs={12} md={6} >
+              <InputComponent
                   id="ConfirmPassword"
-                  error={errorComponent.includes("ConfirmPassword")}
+                  icon={Lock}
                   value={ConfirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
                   label="確認"
+                  set={setConfirmPassword}
+                  error={errorComponent}
                   type="password"
                 />
               </Grid>
-            </Grid>
             <Grid
               item xs={12} md={4} justify='center'
               container alignItems="flex-end" spacing={1}
@@ -259,7 +230,7 @@ const Register = () => {
                 color="primary"
               >
                 註冊
-                    </Button>
+              </Button>
             </Grid>
           </Grid>
         </div>

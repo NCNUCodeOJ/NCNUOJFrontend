@@ -403,12 +403,6 @@ const SignInSide = () => {
               >
                 忘記密碼
               </Button>
-              <Button
-                // color="inherit"
-                href="#register"
-              >
-                註冊
-              </Button>
               <Box mt={5}>
                 <Copyright />
               </Box>
